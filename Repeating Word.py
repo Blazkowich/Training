@@ -1,6 +1,8 @@
-sityva = input("Asobgera Meordeba? : ")
-ramdeni = ''
-for aso in sityva:
-    if aso == ' ':
-        ramdeni += aso
-print("Ki, Meordeba" if any(sityva.count(aso) > 1 for aso in sityva) else "Ara, Ar Meordeba")
+words = input("Word? : ")
+howmanywords = dict()
+dictkey = howmanywords.keys()
+for word in words:
+    if word in dictkey:
+        print(f"{word} - Word is not unical")
+    else:
+        howmanywords[word] = 1
