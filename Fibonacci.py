@@ -1,12 +1,12 @@
 def fib(num):
-    n1, n2 = 0, 1
-    n0 = 0
-    while n0 < num:
-        print(n1, end=' , ')
-        n3 = n1 + n2
-        n1 = n2
-        n2 = n3
-        n0 += 1
+    num1, num2 = 0, 1
+    num0 = 0
+    while num0 < num:
+        print(num1, end=' , ')
+        num3 = num1 + num2
+        num1 = num2
+        num2 = num3
+        num0 += 1
 
 
 n = int(input("Enter the number:  "))
