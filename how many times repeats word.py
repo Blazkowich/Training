@@ -1,10 +1,11 @@
-sityva = input("Sityva ? : ")
-sia = dict()
-
-for aso in sityva:
-    if aso in sia:
-        sia[aso] += 1
+words = input("Word? : ")
+howmanywords = dict()
+count = 0
+dictkey = howmanywords.keys()
+for word in words:
+    count += 1
+    if word in dictkey:
+        howmanywords[word] += 1
     else:
-        sia[aso] = 1
-print(sia)
-
+        howmanywords[word] = 1
+print(howmanywords)
