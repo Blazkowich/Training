@@ -1,6 +1,6 @@
 number = int(input("Enter the number : "))
-startNum = 1
+startNumber = 1
 
 for num in range(1, number + 1):
-    startNum = startNum * num
-print("The Factorial of %d = %d" % (number, startNum))
+    startNumber = startNumber * num
+print("The Factorial of %d = %d" % (number, startNumber))
