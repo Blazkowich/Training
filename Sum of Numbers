@@ -1,7 +1,7 @@
-num = int(input("Enter the number : "))
-num1 = num // 1000
-num2 = (num - num1*1000)//100
-num3 = (num - num1*1000 - num2*100)//10
-num4 = num - num1*1000 - num2*100 - num3*10
-
-print("The sum of numbers is :", num1+num2+num3+num4)
+number = int(input("Enter the number : "))
+sumofNums = 0
+while number > 0:
+    numb = number % 10
+    number = number // 10
+    sumofNums += numb
+print(sumofNums)
