@@ -1,0 +1,5 @@
+words = str(input("Enter Words to reverse : "))
+wordSplt = ''
+for word in words.split():
+    wordSplt += word[::-1]
+print(wordSplt)
