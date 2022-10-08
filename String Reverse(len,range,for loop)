@@ -1,0 +1,5 @@
+words = str(input("Write Text For Reverse : "))
+new_str = ''
+for word in range(len(words), 0, -1):
+    new_str += words[word-1]
+print(new_str)
