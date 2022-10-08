@@ -1,0 +1,15 @@
+nums = [1,2,3]
+mx = nums[0]
+secmx = 0
+minnum = 0
+for num in nums[1:]:
+	if num > mx:
+		mx = num
+
+while minnum < len(nums):
+		if nums[minnum] > secmx and nums[minnum] != mx:
+			secmx = nums[minnum]
+		minnum += 1
+		
+print("Max Number is : ", mx)		
+print("Second Max Number is : ", secmx)
