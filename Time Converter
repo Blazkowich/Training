@@ -1,0 +1,12 @@
+def timeconverter(second):
+    second = second % (24 * 3600)
+    hour = second // 3600
+    second %= 3600
+    minute = second // 60
+    second %= 60
+    return "%02d:%02d:%02d" % (hour, minute, second)
+
+
+n = int(input("Which number do you want to convert in time ? :"))
+
+print(timeconverter(n))
