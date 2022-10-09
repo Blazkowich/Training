@@ -6,4 +6,4 @@ def count_by_two(num):
 
 
 number = int(input("Please Enter The Numbers : "))
-print(count_by_two(10))
+print(count_by_two(number))
