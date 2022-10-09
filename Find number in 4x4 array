@@ -1,0 +1,19 @@
+lst = [
+
+    [1,2,3,4],
+
+    [5,6,7,8],
+
+    [9,10,11,12],
+
+    [13,14,15,16]]
+
+newlst = 0
+
+for numbers in lst:
+
+	for number in numbers:		if number > 6 and number < 8:
+
+			newlst = number
+
+print(f"Yes. There is number - {newlst} in list")
