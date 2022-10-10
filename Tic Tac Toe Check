@@ -1,9 +1,13 @@
+import random
+
+
 tictactoe = [
     ['x', 'x', 'o'],
     ['o', 'x', 'x'],
     ['o', 'o', 'x']
 ]
 
+random.shuffle(tictactoe)
 
 b1 = tictactoe[0][0]
 b2 = tictactoe[0][1]
@@ -35,7 +39,7 @@ def whichwin():
         print(f"{b7} at b7 - b8 - b9 line Win The Game")
 
     else:
-        print("None Win, Try Again")
+        print("Draw! Try Again ...")
 
 
 whichwin()
