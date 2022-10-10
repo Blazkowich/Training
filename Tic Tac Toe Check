@@ -18,23 +18,24 @@ b9 = tictactoe[2][2]
 
 def whichwin():
     if b1 == b2 and b2 == b3 and b1 != ' ':
-        print(f"{b1} at b1 - b2 - b3 line Win The Game", end='')
+        print(f"{b1} at b1 - b2 - b3 line Win The Game")
     elif b1 == b4 and b4 == b7 and b1 != ' ':
-        print(f"{b1} at b1 - b4 - b7 line Win The Game", end='')
+        print(f"{b1} at b1 - b4 - b7 line Win The Game")
     elif b1 == b5 and b5 == b9 and b1 != ' ':
-        print(f"{b1} at b1 - b5 - b9 line Win The Game", end='')
+        print(f"{b1} at b1 - b5 - b9 line Win The Game")
     elif b2 == b5 and b5 == b8 and b2 != ' ':
-        print(f"{b2} at b2 - b5 - b8 line Win The Game", end='')
+        print(f"{b2} at b2 - b5 - b8 line Win The Game")
     elif b3 == b6 and b6 == b9 and b3 != ' ':
-        print(f"{b3} at b3 - b6 - b9 line Win The Game", end='')
+        print(f"{b3} at b3 - b6 - b9 line Win The Game")
     elif b3 == b5 and b5 == b7 and b3 != ' ':
-        print(f"{b3} at b3 - b5 - b7 line Win The Game", end='')
+        print(f"{b3} at b3 - b5 - b7 line Win The Game")
     elif b4 == b5 and b5 == b6 and b4 != ' ':
-        print(f"{b4} at b4 - b5 - b6 line Win The Game", end='')
+        print(f"{b4} at b4 - b5 - b6 line Win The Game")
     elif b7 == b8 and b8 == b9 and b7 != ' ':
-        print(f"{b7} at b7 - b8 - b9 line Win The Game", end='')
+        print(f"{b7} at b7 - b8 - b9 line Win The Game")
+
     else:
-        print("None Win, Try Again")
+        print("None Win, Try Again", end= None)
 
 
-print(whichwin())
+whichwin()
