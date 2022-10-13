@@ -1,0 +1,89 @@
+board = [
+    '-', '-', '-',
+    '-', '-', '-',
+    '-', '-', '-']
+
+current_Player = 'X'
+winner = None
+game_Running = True
+
+
+def print_board(board):
+    print('-------------')
+    print('| ' + board[0] + ' | ' + board[1] + ' | ' + board[2] + ' |')
+    print('-------------')
+    print('| ' + board[3] + ' | ' + board[4] + ' | ' + board[5] + ' |')
+    print('-------------')
+    print('| ' + board[6] + ' | ' + board[7] + ' | ' + board[8] + ' |')
+    print('-------------')
+
+
+def player_input(board):
+    play_inp = int(input("Enter number 1-9 : "))
+    if board[play_inp - 1] == '-':
+        board[play_inp - 1] = current_Player
+    else:
+        print('Nope, Spot is Busy.')
+
+
+def which_win(board):
+    global winner
+    global game_Running
+    if board[0] == board[1] and board[1] == board[2] and board[0] != '-':
+        winner = board[0]
+        return True
+    elif board[0] == board[3] and board[3] == board[6] and board[0] != '-':
+        winner = board[0]
+        return True
+    elif board[0] == board[4] and board[4] == board[8] and board[0] != '-':
+        winner = board[0]
+        return True
+    elif board[1] == board[4] and board[4] == board[7] and board[1] != '-':
+        winner = board[1]
+        return True
+    elif board[2] == board[5] and board[5] == board[8] and board[2] != '-':
+        winner = board[2]
+        return True
+    elif board[2] == board[4] and board[4] == board[6] and board[2] != '-':
+        winner = board[2]
+        return True
+    elif board[3] == board[4] and board[4] == board[5] and board[3] != '-':
+        winner = board[3]
+        return True
+    elif board[6] == board[7] and board[7] == board[8] and board[6] != '-':
+        winner = board[6]
+        return True
+    else:
+        print("None Win, Try Again")
+
+
+def check_winner(board):
+    global game_Running
+    if which_win(board):
+        print_board(board)
+        print(f"Winner is {winner} !")
+        game_Running = False
+
+
+def check_Tie(board):
+    global game_Running
+    if '-' not in board:
+        print_board(board)
+        print("It's a Tie!")
+        game_Running = False
+
+
+def switch_player():
+    global current_Player
+    if current_Player == 'X':
+        current_Player = 'O'
+    else:
+        current_Player = 'X'
+
+
+while game_Running:
+    print_board(board)
+    player_input(board)
+    check_winner(board)
+    check_Tie(board)
+    switch_player()
