@@ -1,0 +1,9 @@
+def count_by_two(num):
+    str_num = ""
+    for i in range(2, num + 1, 2):
+        str_num += "{0} ".format(str(i))
+    return str_num
+
+
+number = int(input("Please Enter The Numbers : "))
+print(count_by_two(number))
