@@ -1,15 +1,13 @@
-nums = [1,2,3]
-mx = nums[0]
-secmx = 0
+nums = [1,2,3,4]
+mxnum = nums[0]
+secmxnum = 0
 minnum = 0
 for num in nums[1:]:
-	if num > mx:
-		mx = num
-
-while minnum < len(nums):
-		if nums[minnum] > secmx and nums[minnum] != mx:
-			secmx = nums[minnum]
-		minnum += 1
+	if num > mxnum:
+		mxnum = num
+		if num > minnum and num < mxnum:
+		    secmxnum = num
+		secmxnum += 1
 		
-print("Max Number is : ", mx)		
-print("Second Max Number is : ", secmx)
+print("Max Number is : ", mxnum)		
+print("Second Max Number is : ", secmxnum)
