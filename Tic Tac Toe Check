@@ -6,8 +6,8 @@ tictactoe = [
     ['o', 'x', 'x'],
     ['o', 'o', 'x']
 ]
-
 random.shuffle(tictactoe)
+
 
 b1 = tictactoe[0][0]
 b2 = tictactoe[0][1]
@@ -42,4 +42,5 @@ def whichwin():
         print("Draw! Try Again ...")
 
 
+print(tictactoe[0],tictactoe[1],tictactoe[2],sep ='\n')
 whichwin()
