@@ -1,4 +1,4 @@
-lst = [
+data_4x4 = [
 
     [1,2,3,4],
 
@@ -8,12 +8,10 @@ lst = [
 
     [13,14,15,16]]
 
-newlst = 0
+new_data = 0
 
-for numbers in lst:
-
-	for number in numbers:		if number > 6 and number < 8:
-
-			newlst = number
-
-print(f"Yes. There is number - {newlst} in list")
+for numbers in data_4x4:
+	for number in numbers:
+	    if number > 6 and number < 8:
+	        new_data = number
+print(f"Yes. There is number - {new_data} in list")
