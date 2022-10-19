@@ -1,0 +1,17 @@
+data_4x4 = [
+
+    [1,2,3,4],
+
+    [5,6,7,8],
+
+    [9,10,11,12],
+
+    [13,14,15,16]]
+
+new_data = 0
+
+for numbers in data_4x4:
+	for number in numbers:
+	    if number > 6 and number < 8:
+	        new_data = number
+print(f"Yes. There is number - {new_data} in list")
