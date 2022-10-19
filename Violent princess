@@ -1,0 +1,13 @@
+def violent_princess(pan, door, shoes, mommy, summary):
+    health_dragons = 0
+    if pan >= 1 and shoes <= 10 and summary >= 1:
+        for dragon in range(summary + 1):
+            if dragon % pan != 0 and dragon % door != 0 and dragon % shoes != 0 and dragon % mommy != 0:
+                health_dragons += 1
+    else:
+        return "There's No Dragons"
+    return summary - health_dragons
+
+
+print(violent_princess(1, 2, 3, 4, 12))
+print(violent_princess(2, 3, 4, 5, 24))
