@@ -1,0 +1,13 @@
+nums = [1,2,3,4]
+mxnum = nums[0]
+secmxnum = 0
+minnum = 0
+for num in nums[1:]:
+	if num > mxnum:
+		mxnum = num
+		if num > minnum and num < mxnum:
+		    secmxnum = num
+		secmxnum += 1
+		
+print("Max Number is : ", mxnum)		
+print("Second Max Number is : ", secmxnum)
