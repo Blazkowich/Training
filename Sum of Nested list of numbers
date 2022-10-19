@@ -1,0 +1,15 @@
+data_3x3 = [
+
+    [1,2,3],
+
+    [4,5,6],
+
+    [7,8,9]]
+
+new_data = 0
+
+for numbers in data_3x3:
+	for number in numbers:
+	    new_data = new_data + number
+
+print(new_data)
