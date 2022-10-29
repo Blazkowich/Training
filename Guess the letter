@@ -1,17 +1,23 @@
 import random
-words = {'camel': 'an animal with a hump', 'orange': 'orange color fruit', 'train': 'transport on rails'}
-word, expla = random.choice(list(words.items()))
+words = {'camel' : 'an animal with a hump','orange': 'orange color fruit','train':'transport on rails'}
+word, expla = random.choice(list(words.items())) 
 chance = 3
-charac = "*" * len(word)
 gameover = False
 word = word.lower()
+char = []
+star = '*'
+for i in word:
+     if i != star:
+        char += star
+        chara = "".join(char)
+        charac = chara            
 while not gameover:
     print("You have " + str(chance) + " Move")
     print(charac)
     guess = input(f"{expla}, Guess the letter : ")
     if len(guess) > 1:
-        print("Only One Character !")
-        continue
+        print("Only One Character!")
+        continue 
     indx = 0
     if guess in word:
         while word.find(guess, indx) != -1:
@@ -20,11 +26,12 @@ while not gameover:
             indx += 1
         print("Yes, Correct")
     else:
-        print("Wrong")
-        chance -= 1
-
+         print("Wrong")
+         chance -= 1
+         
     if word == charac:
-        print("You Win, The Word Was - " + word)
-        gameover = True
+         print("You Win, The Word Was - " + word)
+         gameover = True
     if chance == 0:
         print("You lose")
+            
