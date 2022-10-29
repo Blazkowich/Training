@@ -1,21 +1,12 @@
-num = [1, -5, 3, -8, 5, 0, 7]
-
-sindx = 0
-
-eindx = len(num)-1
-
-while sindx < eindx:
-
-    if num[sindx] < 0:
-
-        sindx += 1
-
-    elif num[eindx] > 0:
-
-        eindx -=1
-
+numbers = [1, -5, 3, -8, 5, 0, 7]
+start_index = 0
+end_index = len(numbers)-1
+while start_index < end_index:
+    if numbers[start_index] < 0:
+        end_index -= 1
+        numbers[start_index], numbers[end_index] = numbers[end_index], numbers[start_index]
+        print(f"If Number Is Negative ",numbers)
     else:
-
-        num[sindx], num[eindx] = num[eindx], num[sindx]
-
-print(num)
+        numbers[start_index], numbers[end_index] = numbers[end_index], numbers[start_index]
+        end_index -= 1
+        print("Else Shuffle ",numbers)  
