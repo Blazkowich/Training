@@ -1,0 +1,9 @@
+num = [1, 2, 3, 4, 5]
+sindx = 0
+eindx = len(num)-1
+
+while sindx < eindx:
+    num[sindx], num[eindx] = num[eindx], num[sindx]
+    sindx = sindx + 1
+    eindx = eindx - 1
+print(num)
