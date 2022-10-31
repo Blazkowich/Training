@@ -1,0 +1,20 @@
+numberList = [1, 2, -3, -1, -2, 3, 4, -4]
+listLength = len(numberList) 
+finalList = []
+negativeNumber = []
+positiveNumber = []
+counter = 0
+iteratorIndex = 0
+while counter < listLength:
+    if numberList[iteratorIndex] < 0:
+        negativeNumber.append(numberList[iteratorIndex])
+    else:
+        positiveNumber.append(numberList[iteratorIndex])
+    iteratorIndex += 1
+    counter += 1
+for positive in range(0, len(positiveNumber)):
+    for negative in range(0, len(negativeNumber)):
+        if positiveNumber[positive] == (-1*negativeNumber[negative]):
+            finalList.append(negativeNumber[negative])
+            finalList.append(positiveNumber[positive])
+print(finalList)
