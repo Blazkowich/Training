@@ -1,0 +1,11 @@
+num = [1, 3, -2, 2, -1, -3]
+ln = len(num)
+i, j = 0, 1
+while j < ln and i < ln:
+    while i < ln and num[i] < 0:
+        i += 2
+    while j < ln and num[j] > 0:
+        j += 2
+    if i < ln and j < ln:
+        num[i], num[j] = num[j], num[i]
+print(num)
