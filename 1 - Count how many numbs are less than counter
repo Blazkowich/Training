@@ -1,0 +1,13 @@
+numbers = [3, 5, 1, 4]
+counted_numbers = []
+number_index = 0
+while number_index < len(numbers):
+    count = 0
+    for numb in numbers:
+        if numbers[number_index] > numb:
+            count += 1
+        else:
+            pass
+    counted_numbers.append(count)
+    number_index += 1
+print(counted_numbers)
