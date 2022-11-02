@@ -1,0 +1,15 @@
+text = "one two three one four five six two one"
+
+dictionary = {}
+
+for word in text.split():
+
+    if word not in dictionary:
+
+        dictionary [word] = 0
+
+    dictionary [word] += 1
+
+print(dictionary)
+
+    
