@@ -1,0 +1,11 @@
+numbers = [3, 5, 1, 4]
+dictionary = {}
+counter = 0
+for index in numbers:
+    dictionary[index] = 0
+while counter < len(numbers):
+    for sec_index in dictionary:
+        if sec_index > numbers[counter]:
+            dictionary[sec_index] += 1
+    counter += 1
+print(dictionary)
