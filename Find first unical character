@@ -1,0 +1,11 @@
+words = "iieieiuaouue"
+newch = ''
+while words != "":
+    text_len = len(words)
+    charac = words[0]
+    words = words.replace(charac, '')
+    text_len1 = len(words)
+    if text_len1 == text_len - 1:
+        newch += charac
+        print(newch)
+        break
