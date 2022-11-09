@@ -1,11 +1,14 @@
-numbers = [3, 5, 1, 4]
-dictionary = {}
-counter = 0
-for index in numbers:
-    dictionary[index] = 0
-while counter < len(numbers):
-    for sec_index in dictionary:
-        if sec_index > numbers[counter]:
-            dictionary[sec_index] += 1
-    counter += 1
-print(dictionary)
+n = [3,5,1,4]
+nn = []
+d = {}
+for i in n:
+    if i not in d:
+        d[i] = 0
+    d[i] += 1
+for p in n:
+    c = 0
+    for k,v in d.items():
+        if k < p:
+            c += v
+    nn.append(c)
+print(nn)
