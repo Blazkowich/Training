@@ -1,0 +1,11 @@
+t = "ieieueieoeijeikei"
+ln = len(t)
+for i in range(ln):
+    f = True
+    for j in range(i+1, ln):
+        if t[i] == t[j]:
+            f = False
+            break
+    if f:
+        print(t[i])
+        break
