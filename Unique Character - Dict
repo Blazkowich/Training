@@ -1,0 +1,10 @@
+t = "ieieueieoeijeikei"
+d = {}
+for i in t:
+    if i not in d:
+        d[i] = 0
+    d[i] += 1
+for k, v in d.items():
+    if v == 1:
+        print(k)
+        break
