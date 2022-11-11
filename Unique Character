@@ -1,11 +1,16 @@
-t = "ieieueieoeijeikei"
+t = "ieieeieeieieiieieieiiieiieiieiieieiiiieieieiieeiieiieiu"
 ln = len(t)
+c = 0
+j = 0
 for i in range(ln):
-    f = True
+    found = True
     for j in range(i+1, ln):
+        c += 1
         if t[i] == t[j]:
-            f = False
+            found = False
             break
-    if f:
-        print(t[i])
+    if found:
+        c += 1
+        print(t[j])
         break
+print(c)
