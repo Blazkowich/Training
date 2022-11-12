@@ -1,11 +1,15 @@
-words = "iieieiuaouue"
-newch = ''
-while words != "":
-    text_len = len(words)
-    charac = words[0]
-    words = words.replace(charac, '')
-    text_len1 = len(words)
-    if text_len1 == text_len - 1:
-        newch += charac
-        print(newch)
+t = "ieiez"
+r = 0
+for i in t:
+    r += 1
+    c = 0
+    for j in t:
+        r += 1
+        if i == j:
+            c += 1
+        if c > 1:
+            break
+    if c == 1:
+        print(i)
         break
+print(r)
