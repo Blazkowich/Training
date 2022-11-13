@@ -1,0 +1,17 @@
+t = "dhdjdkkgჰk"
+
+en = "abcdefghijklmnopqrstuvwxyz"
+
+for i in range(len(t)):
+
+    if t[i] not in en.split():
+
+        print("Non English")
+
+        break
+
+    else:
+
+        print("All English")
+
+        break
