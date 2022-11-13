@@ -1,0 +1,31 @@
+t = "hhjdkkenbdjd"
+
+#t = "abcdefghijklmnopqrstuvwxyz"
+
+en = "abcdefghijklmnopqrstuvwxyz"
+
+d = {}
+
+for i in en:
+
+    if i not in d:
+
+        d[i] = 0
+
+    d[i] += 1
+
+for k in d.keys():
+
+    if k not in t:
+
+        print("No")
+
+        break
+
+    else:
+
+        print("Yes")
+
+        break
+
+print(c)    
