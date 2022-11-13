@@ -1,0 +1,27 @@
+#t = "jjdhhhfkak"
+
+t = "abcdefghijklmnopqrstuvwxyz"
+
+en = "abcdefghijklmnopqrstuvwxyz"
+
+fn = True
+
+for i in range(len(t)):
+
+    if en[i] in t:
+
+        fn = True
+
+        pass
+
+    else:
+
+        print("Not All")
+
+        fn = False
+
+        break
+
+if fn:
+
+    print("Yes")
