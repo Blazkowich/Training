@@ -1,0 +1,21 @@
+def pal(s, t):
+    if len(s) != len(t):
+        return False
+    d = {}
+    for i in s:
+        if i not in d:
+            d[i] = 0
+        d[i] += 1
+    for i in t:
+        if i not in d:
+            return False
+        else:
+            d[i] -= 1
+    for k in d:
+        if d[k] != 0:
+            return False
+    return True
+   
+print(pal("namibia","biamani"))
+print(pal("rat","car"))
+print(pal("a","ab"))
