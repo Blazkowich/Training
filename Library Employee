@@ -1,0 +1,131 @@
+class Employee:
+
+    def __init__(self, p, b, c, a, ch, q, t, n, nn):
+        self.b = b  # ID
+        self.c = c  # Book Name
+        self.a = a  # main dict
+        self.ch = ch  # Menu Counter
+        self.q = q  # Input Password
+        self.p = p  # Fixed Password
+        self.n = n  # Fixed Login Name
+        self.nn = nn  # Input Login Name
+        self.t = t  # Boolean For Loop
+
+    def logn(self, t, n, nn):
+        self.t = t
+        self.n = n
+        self.nn = nn
+
+    def passw(self, p, q, t):
+        self.p = p
+        self.q = q
+        self.t = t
+
+    def add(self, b, c):
+        self.b = b
+        self.c = c
+        self.a[self.b] = self.c
+        return self.a
+
+    def remove(self, ):
+        del self.a[self.b]
+
+    def read(self):
+        return self.a
+
+    def readb(self):
+        return self.a[self.b]
+
+    def loop(self, t):
+        self.t = t
+        while self.ch != '0':
+            print("0. Exit")
+            print("1. Add")
+            print("2. Delete")
+            print("3. Read All")
+            print("4. Read Book By ID")
+            ch = input("Please Choose : ")
+            if ch == '1':  # ADD ELEMENTS
+                b = input("Enter ID : ")
+                c = input("Enter Book Name : ")
+                if b in Employee.read(self):
+                    print("Try Another Key.")
+                    continue
+                else:
+                    Employee.add(self, b, c)
+                    print("Dict : ", Employee.read(self))
+
+            elif ch == '2':  # DELETE ELEMENTS
+                self.b = input("Enter ID : ")
+                if self.b not in self.a:
+                    print("There's No Book By This ID. Try Another ID..")
+                    continue
+                else:
+                    Employee.remove(self)
+                    print("Dict : ", Employee.read(self))
+
+            elif ch == '3':  # READ ALL DICTIONARY
+                if len(self.a) == 0:
+                    print("There's No Book in Dict")
+                    continue
+                else:
+                    print("Dict : ", Employee.read(self))
+
+            elif ch == '4':  # READ FROM DICTIONARY
+                b = input("Enter ID : ")
+                if b in self.a:
+                    print(Employee.readb(self))
+                elif len(self.a) == 0:
+                    print("There's No Book in Dict")
+                    continue
+                else:
+                    print("There's No Book By This ID. Try Another ID..")
+                    continue
+
+            elif ch == '0':  # EXIT
+                print("Exit In Login Menu.")
+                quit(obj.logn(t=True, n="roger", nn=input("Please Enter Login : ")))
+            else:
+                print("Wrong Character. Try Another")
+                continue
+
+
+if __name__ == '__main__':
+    obj = Employee(p='', b='', c='', a={}, ch=1, t='True', n='',
+                   nn='',
+                   q='')
+    obj.logn(t=True, n="roger", nn=input("Please Enter Login : "))
+
+    # Login
+    while obj.t:
+        if obj.nn == '0':
+            print("Bye Employee")
+            quit(obj)
+
+        if obj.n != obj.nn:
+            obj.t = False
+            print("Login Is Not Correct")
+            obj.logn(t=True, n="roger", nn=input("Please Enter Login : "))
+
+        if obj.nn == obj.n:
+            obj.t = False
+            print("Login is Correct!")
+            continue
+    obj.passw(p='123', q=input("Please Enter Password :"), t=True)
+    # Password
+
+    while obj.t:
+        if obj.ch == '0':
+            obj.t = False
+            print("Exit From Menu")
+            quit()
+        if obj.q == obj.p:
+            print("Password is Right!")
+            obj.loop(t=True)
+
+        if obj.q != obj.p:
+            obj.t = False
+            print("Password Is Not Correct")
+            obj.passw(p='123', q=input("Please Enter Password :"), t=True)
+
+print()
