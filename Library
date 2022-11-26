@@ -1,0 +1,259 @@
+class Employee:
+
+    def __init__(self, p, b, c, a, ch, q, t, n, nn, ad, cus, pad, pcus, logins, aa):
+        self.logins = logins  # Employee And Customer Login Base
+        self.b = b  # ID
+        self.c = c  # Book Name
+        self.a = a  # main dict
+        self.aa = aa  # Second Dict
+        self.ch = ch  # Menu Counter
+        self.q = q  # Input Password
+        self.p = p  # Fixed Password
+        self.n = n  # Fixed Login Name
+        self.nn = nn  # Input Login Name
+        self.t = t  # Boolean For Loop
+        self.ad = ad  # Admin
+        self.cus = cus  # Customer
+        self.pad = pad  # Admin Password
+        self.pcus = pcus  # Customer Password
+
+    def takebook(self, b, c):
+        self.b = b
+        self.c = c
+        obj.boook()
+        return obj.boook()
+
+    def returnbook(self, b, c):
+        self.b = b
+        self.c = c
+        obj.book()
+        return obj.book()
+
+    def book(self):
+        self.a[self.b] = self.c
+        return self.a
+
+    def boook(self):
+        self.aa[self.b] = self.c
+        return self.aa
+
+    def roles(self, ad, cus):
+        self.ad = ad
+        self.cus = cus
+
+    def logn(self, t, n, nn, ad, cus, logins):
+        self.t = t
+        self.n = n
+        self.nn = nn
+        self.ad = ad
+        self.cus = cus
+        self.logins = logins
+
+    def passw(self, p, q, t, pad, pcus):
+        self.p = p
+        self.q = q
+        self.t = t
+        self.pad = pad
+        self.pcus = pcus
+
+    def add(self, b, c):
+        self.b = b
+        self.c = c
+        obj.book()
+        return obj.book()
+
+    def addd(self, b, c):
+        self.b = b
+        self.c = c
+        obj.boook()
+        return obj.boook()
+
+    def remove(self):
+        del self.a[self.b]
+
+    def readall(self):
+        return self.a
+
+    def readalll(self):
+        return self.aa
+
+    def readbook(self):
+        return self.a[self.b]
+
+    def readboook(self):
+        return self.aa[self.c]
+
+    def loop(self, ch):
+        self.ch = ch
+        while ch != '0':
+            print("0. Exit")
+            print("1. Add")
+            print("2. Delete")
+            print("3. Read All")
+            print("4. Read Book By ID")
+            ch = input("Please Choose : ")
+            if ch == '1':  # ADD ELEMENTS
+                b = input("Enter ID : ")
+                c = input("Enter Book Name : ")
+                if b.lower() in Employee.readall(self) or c.lower() in Employee.readall(self):
+                    print("There Already exist ID or Book in Dict. Input Another ID or Book Name ..")
+                    continue
+                elif b == '' or c == '':
+                    print("Text is Empty. Write Correct")
+                    continue
+                else:
+                    Employee.add(self, b.lower(), c.lower())
+                    print("Dict : ", Employee.readall(self))
+
+            elif ch == '2':  # DELETE ELEMENTS
+                self.b = input("Enter ID : ")
+                if self.b not in self.a:
+                    print("There's No Book By This ID. Try Another ID..")
+                    continue
+                else:
+                    Employee.remove(self)
+                    print("Dict : ", Employee.readall(self))
+
+            elif ch == '3':  # READ ALL DICTIONARY
+                if len(self.a) == 0:
+                    print("There's No Book in Dict")
+                    continue
+                else:
+                    print("Dict : ", Employee.readall(self))
+
+            elif ch == '4':  # READ FROM DICTIONARY
+                b = input("Enter ID : ")
+                if b in self.a:
+                    print(Employee.readbook(self))
+                elif len(self.a) == 0:
+                    print("There's No Book in Dict")
+                    continue
+                else:
+                    print("There's No Book By This ID. Try Another ID..")
+                    continue
+
+            elif ch == '0':  # EXIT
+                self.t = False
+                print("Exit In Login Menu.")
+                obj.logn(t=True, n=["roger", "customer"], nn=input("Please Enter Login : "), ad='roger', cus="customer",
+                         logins=["roger", "customer"])
+                obj.looplog(t=True)
+                obj.passw(p=['123', 'customer'], q=input("Please Enter Password :"), t=True, pad='123', pcus="customer")
+                obj.looppass()
+            else:
+                print("Wrong Character. Try Another")
+                continue
+
+    def cloop(self, ch):
+        while ch != '0':
+            print("0. Exit")
+            print("1. Take The Book")
+            print("2. Return The Book")
+            print("3. Read Book")
+            ch = str(input("Please Choose : "))
+            if ch == '1':  # Take The Book
+                b = str(input("Enter ID : "))
+                if b.lower() in Employee.readboook(self):
+                    print("There Already exist ID or Book in Dict. Input Another ID or Book Name ..")
+                    continue
+                elif b == '' or self.c == '':
+                    print("Text is Empty. Write Correct")
+                    continue
+                else:
+                    Employee.addd(self, b, self.c)
+                    print("Dict : ", Employee.readalll(self))
+
+            elif ch == '2':  # Return The Book
+                self.b = str(input("Enter Book name : "))
+                self.b = str(input("Enter ID : "))
+                if self.b not in self.aa:
+                    print("There's No Book By This Name. You Lost it? ")
+                    continue
+                else:
+                    obj.takebook(self, c='')
+                    print("Dict : ", obj.takebook(self, c=''))
+
+            elif ch == '3':  # READ The Book
+                b = str(input("Enter ID : "))
+                if b in self.aa:
+                    print(obj.returnbook(self, c=''))
+                elif len(self.aa) == 0:
+                    print("There's No Book in Dict")
+                    continue
+                else:
+                    print("There's No Book By This ID. Try Another ID..")
+                    continue
+
+            elif ch == '0':  # EXIT
+                self.t = False
+                print("Exit In Login Menu.")
+                obj.logn(t=True, n=["roger", "customer"], nn=input("Please Enter Login : "), ad='roger', cus="customer",
+                         logins=["roger", "customer"])
+                obj.looplog(t=True)
+                obj.passw(p=['123', 'customer'], q=input("Please Enter Password :"), t=True, pad='123', pcus="customer")
+                obj.looppass()
+            else:
+                print("Wrong Character. Try Another")
+                continue
+
+    def looplog(self, t):
+        self.t = t
+        self.t = True
+        while obj.t:
+            if obj.nn == 'exit':
+                obj.t = False
+                print("Bye.")
+                quit(obj)
+
+            elif obj.nn not in obj.logins:
+                # obj.t = False
+                print("Login Is Not Correct")
+                obj.logn(t=True, n="roger", nn=input("Please Enter Login : "), ad='roger', cus="customer",
+                         logins=["roger", "customer"])
+                continue
+
+            elif obj.nn == obj.ad:
+                obj.t = False
+                print("Welcome Roger!")
+                continue
+            elif obj.nn == obj.cus:
+                obj.t = False
+                print("Welcome Customer")
+                obj.cloop(ch='1')
+            elif obj.nn != obj.logins:
+                # obj.t = False
+                print("Login Is Not Correct")
+                obj.logn(t=True, n="roger", nn=input("Please Enter Login : "), ad='roger', cus="customer",
+                         logins=["roger", "customer"])
+                continue
+            else:
+                print("Login Is Not Correct")
+                continue
+
+    @staticmethod
+    def looppass():
+        while obj.t:
+            if obj.q == obj.pad:
+                print("Password is Right! Welcome To Admin Panel!")
+                obj.loop(ch='')
+            if obj.q == obj.cus:
+                print("Password is Right! Welcome To Customer Panel!")
+                obj.loop(ch='')
+            if obj.q not in obj.p:
+                obj.t = False
+                print("Password Is Not Correct")
+                obj.passw(p=['123', 'customer'], q=input("Please Enter Password :"), t=True, pad='123', pcus="customer")
+
+
+if __name__ == '__main__':
+    obj = Employee(p='', b='', c='', a={}, ch=1, t='True', n='',
+                   nn='',
+                   q='', ad='', cus='', pad='', pcus='', logins='', aa={})
+
+    obj.logn(t=True, n=["roger", "customer"], nn=input("Please Enter Login : "), ad='roger', cus="customer",
+             logins=["roger", "customer"])
+    obj.looplog(t=True)
+    obj.passw(p=['123', 'customer'], q=input("Please Enter Password :"), t=True, pad='123', pcus="customer")
+    obj.looppass()
+
+print()
