@@ -1,0 +1,321 @@
+class Library:
+
+    def __init__(self, fixed_pass, book_id, book_name, dictionary,
+                 second_dictionary, counter, input_pass, boolean,
+                 admin_name, input_name, admin_base_name,
+                 customer_base_name, admin_pass, customer_password,
+                 logins):
+        self.logins = logins  # Employee And Customer Login Base
+        self.book_id = book_id  # ID
+        self.book_name = book_name  # Book Name
+        self.dictionary = dictionary  # main dict
+        self.second_dictionary = second_dictionary  # Second Dict
+        self.counter = counter  # Menu Counter
+        self.input_pass = input_pass  # Input Password
+        self.fixed_pass = fixed_pass  # Fixed Password
+        self.admin_name = admin_name  # Fixed Login Name
+        self.input_name = input_name  # Input Login Name
+        self.boolean = boolean  # Boolean For Loop
+        self.admin_base_name = admin_base_name  # Admin
+        self.customer_base_name = customer_base_name  # Customer
+        self.admin_pass = admin_pass  # Admin Password
+        self.customer_password = customer_password  # Customer Password
+
+    def logn(self, boolean, admin_name, input_name,
+             admin_base_name, customer_base_name, logins):
+        self.boolean = boolean
+        self.admin_name = admin_name
+        self.input_name = input_name
+        self.admin_base_name = admin_base_name
+        self.customer_base_name = customer_base_name
+        self.logins = logins
+
+    def passw(self, fixed_pass, input_pass, boolean, admin_pass, customer_password):
+        self.fixed_pass = fixed_pass
+        self.input_pass = input_pass
+        self.boolean = boolean
+        self.admin_pass = admin_pass
+        self.customer_password = customer_password
+
+    def looplog(self, boolean):
+        self.boolean = boolean
+        self.boolean = True
+        while obj.boolean:
+            if obj.input_name == 'exit':
+                obj.boolean = False
+                print("Bye.")
+                exit()
+
+            elif obj.input_name not in obj.logins:
+                print("Login Is Not Correct")
+                obj.logn(boolean=True, admin_name="roger",
+                         input_name=input("Please Enter Login : "), admin_base_name='roger',
+                         customer_base_name="customer", logins=["roger", "customer"])
+                continue
+
+            elif obj.input_name == obj.admin_base_name:
+                obj.boolean = False
+                print("Welcome Roger!")
+                continue
+
+            elif obj.input_name == obj.customer_base_name:
+                obj.boolean = False
+                print("Welcome Customer")
+                continue
+
+            elif obj.input_name != obj.logins:
+                print("Login Is Not Correct")
+                obj.logn(boolean=True, admin_name="roger",
+                         input_name=input("Please Enter Login : "), admin_base_name='roger',
+                         customer_base_name="customer", logins=["roger", "customer"])
+                continue
+
+            else:
+                print("Login Is Not Correct")
+                continue
+
+    @staticmethod
+    def looppass():
+        while obj.boolean:
+            if obj.input_pass == obj.admin_pass:
+                print("Password is Right! Welcome To Admin Panel!")
+                objemployee.loop(counter='')
+            if obj.input_pass == obj.customer_base_name:
+                print("Password is Right! Welcome To Customer Panel!")
+                objcustomer.loop(counter='')
+            if obj.input_pass not in obj.fixed_pass:
+                obj.boolean = False
+                print("Password Is Not Correct")
+                obj.passw(fixed_pass='123', input_pass=input("Please Enter Password :"),
+                          boolean=True, admin_pass='123', customer_password="customer")
+
+
+class Book(Library):
+    def book(self):
+        self.dictionary[self.book_id] = self.book_name
+        return self.dictionary
+
+    def add(self, book_id, book_name):
+        self.book_id = book_id
+        self.book_name = book_name
+        Book.book(self)
+        return Book.book(self)
+
+    def remove(self, book_id):
+        self.book_id = book_id
+        del self.dictionary[book_id]
+
+    def remove_customer_book(self, book_id):
+        self.book_id = book_id
+        del self.second_dictionary[book_id]
+
+    def readall(self):
+        return self.dictionary
+
+    def readall_customer(self):
+        return self.second_dictionary
+
+    def readbook(self, book_id):
+        self.book_id = book_id
+        return self.dictionary[book_id]
+
+    def readbook_customer(self, book_id):
+        self.book_id = book_id
+        return self.second_dictionary[self.book_id]
+
+    def takebook(self, book_id):
+        self.book_id = book_id
+        for k, v in self.dictionary.items():
+            if k not in self.second_dictionary:
+                if k == book_id:
+                    self.second_dictionary[k] = v
+        objbook.remove(book_id)
+        return self.second_dictionary[book_id]
+
+    def returnbook(self, book_id):
+        self.book_id = book_id
+        for k, v in self.second_dictionary.items():
+            if k not in self.dictionary:
+                if k == book_id:
+                    self.dictionary[k] = v
+        objbook.remove_customer_book(book_id)
+        return self.dictionary[book_id]
+
+
+class Employee(Library):
+
+    def loop(self, counter):
+        self.counter = counter
+        while counter != '0':
+            print("0. Exit")
+            print("1. Add")
+            print("2. Delete")
+            print("3. Read All")
+            print("4. Read Book By ID")
+            counter = input("Please Choose : ")
+            if counter == '1':  # ADD ELEMENTS
+                book_id = input("Enter ID : ")
+                book_name = input("Enter Book Name : ")
+                if book_id.lower() in objbook.readall() or book_name.lower() in objbook.readall():
+                    print("There Already exist ID or Book in Dict. Input Another ID or Book Name ..")
+                    continue
+                elif book_id == '' or book_name == '':
+                    print("Text is Empty. Write Correct")
+                    continue
+                else:
+                    objbook.add(book_id.lower(), book_name.lower())
+                    print("Dict : ", objbook.readall())
+
+            elif counter == '2':  # DELETE ELEMENTS
+                book_id_enter = input("Enter ID : ")
+                if book_id_enter not in objbook.readall():
+                    print("There's No Book By This ID. Try Another ID..")
+                    continue
+                else:
+                    objbook.remove(book_id=book_id_enter)
+                    print("Dict : ", objbook.readall())
+
+            elif counter == '3':  # READ ALL DICTIONARY
+                if len(objbook.readall()) == 0:
+                    print("There's No Book in Dict")
+                    continue
+                else:
+                    print("Dict : ", objbook.readall())
+
+            elif counter == '4':  # READ FROM DICTIONARY
+                book_id_enter = str(input("Enter ID : "))
+                if book_id_enter in objbook.readall():
+                    print("Chosen Book :", objbook.readbook(book_id=book_id_enter))
+                elif len(self.dictionary) == 0:
+                    print("There's No Book in Dict")
+                    continue
+                else:
+                    print("Chosen Book :", objbook.readbook(book_id=book_id_enter))
+
+            elif counter == '0':  # EXIT
+                self.boolean = False
+                print("Exit In Login Menu.")
+                obj.logn(boolean=True, admin_name=["roger"], input_name=input("Please Enter Login : "),
+                         admin_base_name='roger', customer_base_name="customer",
+                         logins=["roger", "customer"])
+                obj.looplog(boolean=True)
+                obj.passw(fixed_pass=['123'], input_pass=input("Please Enter Password :"),
+                          boolean=True, admin_pass='123', customer_password="customer")
+                obj.looppass()
+
+            else:
+                print("Wrong Character. Try Another")
+                continue
+
+
+class Customer(Library):
+
+    def loop(self, counter):
+        self.counter = counter
+
+        while counter != '0':
+
+            print("0. Exit")
+            print("1. Take The Book")
+            print("2. Return The Book")
+            print("3. Read List Of Books")
+            print("4. Read Book By ID")
+            print("5. Read Book From Library To Choose")
+
+            counter = str(input("Please Choose : "))
+
+            if counter == '1':  # Take Book
+                book_id_enter = str(input("Enter ID : "))
+                if book_id_enter.lower() in objbook.readall_customer():
+                    print("There Already exist ID or Book in Dict. Input Another ID or Book Name ..")
+                    continue
+
+                elif book_id_enter == '':
+                    print("Text is Empty. Write Correct")
+                    continue
+
+                else:
+                    objbook.takebook(book_id=book_id_enter)
+                    print("Customer Dict : ", objbook.readall_customer())
+
+            elif counter == '2':  # Return Book
+                book_id_enter = input("Enter ID : ")
+                if book_id_enter not in objbook.readall_customer():
+                    print("There's No Book By This ID. Try Another ID..")
+                    continue
+                else:
+                    objbook.returnbook(book_id=book_id_enter)
+                    print("Dict : ", objbook.readall_customer())
+
+            elif counter == '3':  # READ ALL List Of Books
+                if len(self.second_dictionary) == 0:
+                    print("There's No Book in Dict")
+                    continue
+                else:
+                    print("Customer Dict : ", objbook.readall_customer())
+
+            elif counter == '4':  # READ FROM Customer DICTIONARY
+                book_id_enter = str(input("Enter ID : "))
+                if book_id_enter in objbook.readall_customer():
+                    print(objbook.readbook_customer(book_id=book_id_enter))
+                elif len(self.second_dictionary) == 0:
+                    print("There's No Book in Dict")
+                    continue
+                else:
+                    print("Chosen Book :", objbook.readbook_customer(book_id=book_id_enter))
+
+            elif counter == '0':  # EXIT
+                self.boolean = False
+                print("Exit In Login Menu.")
+                obj.logn(boolean=True, admin_name="roger", input_name=input("Please Enter Login : "),
+                         admin_base_name='roger', customer_base_name="customer",
+                         logins=["roger", "customer"])
+                obj.looplog(boolean=True)
+                obj.passw(fixed_pass='123', input_pass=input("Please Enter Password :"),
+                          boolean=True, admin_pass='123', customer_password="customer")
+                obj.looppass()
+
+            elif counter == '5':  # READ ALL DICTIONARY
+                if len(objbook.readall()) == 0:
+                    print("There's No Book in Dict")
+                    continue
+                else:
+                    print("Dict : ", objbook.readall())
+
+            else:
+                print("Wrong Character. Try Another")
+                continue
+
+
+if __name__ == '__main__':
+    obj = Library(fixed_pass='', book_id='', book_name='', dictionary={},
+                  counter=1, boolean='True', admin_name='', input_name='',
+                  input_pass='', admin_base_name='', customer_base_name='',
+                  admin_pass='', customer_password='', logins='', second_dictionary={})
+
+    objbook = Book(fixed_pass='', book_id='', book_name='', dictionary={},
+                   counter=1, boolean='True', admin_name='', input_name='',
+                   input_pass='', admin_base_name='', customer_base_name='',
+                   admin_pass='', customer_password='', logins='', second_dictionary={})
+
+    objemployee = Employee(fixed_pass='', book_id='', book_name='', dictionary={},
+                           counter=1, boolean='True', admin_name='', input_name='',
+                           input_pass='', admin_base_name='', customer_base_name='',
+                           admin_pass='', customer_password='', logins='', second_dictionary={})
+
+    objcustomer = Customer(fixed_pass='', book_id='', book_name='', dictionary={},
+                           counter=1, boolean='True', admin_name='', input_name='',
+                           input_pass='', admin_base_name='', customer_base_name='',
+                           admin_pass='', customer_password='', logins='', second_dictionary={})
+
+    obj.logn(boolean=True, admin_name="roger", input_name=input("Please Enter Login : "),
+             admin_base_name='roger', customer_base_name="customer", logins=["roger", "customer"])
+
+    obj.looplog(boolean=True)
+
+    obj.passw(fixed_pass='123', input_pass=input("Please Enter Password :"),
+              boolean=True, admin_pass='123', customer_password="customer")
+
+    obj.looppass()
+
+print()
