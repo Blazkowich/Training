@@ -1,0 +1,17 @@
+var count, counted_numbers, number_index, numbers;
+numbers = [3, 5, 1, 4];
+counted_numbers = [];
+number_index = 0;
+while ((number_index < numbers.length)) {
+    count = 0;
+    for (var numb, c = 0, b = numbers.length; (c < b); c += 1) {
+        numb = numbers[c];
+        if (numbers[number_index] > numb) {
+            count += 1;
+        } else {
+        }
+    }
+    counted_numbers.push(count);
+    number_index += 1;
+}
+console.log(counted_numbers);
