@@ -1,14 +1,14 @@
-n = [3,5,1,4]
-nn = []
-d = {}
-for i in n:
-    if i not in d:
-        d[i] = 0
-    d[i] += 1
-for p in n:
-    c = 0
-    for k,v in d.items():
-        if k < p:
-            c += v
-    nn.append(c)
-print(nn)
+numbers = [3,5,1,4]
+counted_numbers = []
+dictionary = {}
+for numb in numbers:
+    if numb not in dictionary:
+        dictionary[numb] = 0
+    dictionary[numb] += 1
+for numbTwo in numbers:
+    counter = 0
+    for key,value in dictionary.items():
+        if key < numbTwo:
+            counter += value
+    counted_numbers.append(counter)
+print(counted_numbers)
