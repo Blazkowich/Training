@@ -1,0 +1,275 @@
+class CarStore:
+    def __init__(self, manufacturer, model, model_dict, price,
+                 amount, count, boolean, amount_minus, amount_plus,
+                 admin, input_name, car_input, admin_name):
+        self.manufacturer = manufacturer
+        self.model = model
+        self.price = price
+        self.amount = amount
+        self.amount_minus = amount_minus
+        self.amount_plus = amount_plus
+        self.dictionary = {}
+        self.model_dict = model_dict
+        self.count = count
+        self.boolean = boolean
+        self.admin = admin
+        self.input_name = input_name
+        self.car_input = car_input
+        self.admin_name = admin_name
+
+    def login(self, boolean, admin_name, input_name):
+        self.boolean = boolean
+        self.admin_name = admin_name
+        self.input_name = input_name
+        car.input_name = input("Please Enter Name : ")
+        car.boolean = True
+        while car.boolean:
+            if car.input_name == 'exit':
+                car.boolean = False
+                print("Bye.")
+                exit()
+
+            elif car.input_name not in carstore.admin_name:
+                print("Login Is Not Correct")
+                car.login(boolean=True, admin_name="Yosif", input_name=car.input_name)
+
+            elif car.input_name == carstore.admin_name:
+                car.boolean = False
+                print(f"Welcome {car.input_name}!")
+                continue
+
+            elif car.input_name != carstore.admin_name:
+                print("Login Is Not Correct")
+                carstore.login(boolean=True, admin_name='Yosif',
+                               input_name=car.input_name)
+                continue
+            elif car.input_name not in car.admin_name and car.input_name == "":
+                car.boolean = False
+                print("Text Is Empty.")
+                carstore.login(boolean=True, admin_name='Yosif',
+                               input_name=car.input_name)
+
+            else:
+                car.boolean = False
+                print("Login Is Not Correct")
+                carstore.login(boolean=True, admin_name='Yosif',
+                               input_name=car.input_name)
+
+
+class Car(CarStore):
+
+    def dicti(self, manufacturer, model, price, amount):
+        self.manufacturer = manufacturer
+        self.model = model
+        self.price = price
+        self.amount = amount
+        """if manufacturer in carstore.dictionary.keys() and model == carstore.dictionary[manufacturer]:
+            for mak, mav in carstore.dictionary.items():
+                print("                     ")
+                print(f"Manufacturer - {mak}")
+                for mok, mov in mav.items():
+                    print(f"Model - {mok}")
+                    print(f"Price - {int(mov[0]) * int(mov[1])}$")
+                    print(f"Amount - {int(mov[1])}")
+            Car.add_amount(self=self)
+            """
+
+        dictii = carstore.dictionary[self.manufacturer] = {self.model: [self.price, self.amount]}
+        return dictii
+
+    def garage(self, manufacturer, model, price, amount):
+        self.manufacturer = manufacturer
+        self.model = model
+        self.price = price
+        self.amount = amount
+        car.dicti(manufacturer=self.manufacturer, model=self.model, price=self.price, amount=self.amount)
+        """print("                        ")
+        print(f"Manufacturer : {self.manufacturer}")
+        print(f"Model : {self.model}")
+        print(f"Price : {self.price}$")
+        print(f"Amount : {self.amount}")
+        print("                        ")"""
+        return carstore.dictionary
+
+    def add(self):
+        car.garage(manufacturer=self.manufacturer, model=self.model,
+                   price=self.price, amount=self.amount)
+        return car.garage(manufacturer=self.manufacturer, model=self.model,
+                          price=self.price, amount=self.amount)
+
+    def add_amount(self, manufacturer, model):
+        self.manufacturer = manufacturer
+        self.model = model
+        dictiu_added = int(carstore.dictionary[manufacturer][model][1])
+        dictiu_added_final = dictiu_added + int(self.amount_plus)
+        carstore.dictionary.update({manufacturer: {
+            model: [self.price, dictiu_added_final]}})
+        print("Model In Amount Available :", carstore.dictionary[manufacturer][model][1])
+        return ""
+
+    def sell(self, manufacturer, model):
+        self.manufacturer = manufacturer
+        self.model = model
+        dictiu_removed = int(carstore.dictionary[manufacturer][model][1])
+        dictiu_removed_final = dictiu_removed - int(self.amount_minus)
+        carstore.dictionary.update({manufacturer: {
+            model: [self.price, dictiu_removed_final]}})
+        print("Model In Amount Available :", carstore.dictionary[manufacturer][model][1])
+        return ""
+
+    def seecar(self, manufacturer, model):
+        self.manufacturer = manufacturer
+        self.model = model
+        return carstore.dictionary
+
+    @staticmethod
+    def seestore():
+        for mak, mav in carstore.dictionary.items():
+            print("                     ")
+            print(f"Manufacturer - {mak}")
+            for mok, mov in mav.items():
+                print(f"Model - {mok}")
+                print(f"Price of All Cars - {int(mov[0]) * int(mov[1])}$")
+                print(f"Amount - {mov[1]}")
+        return ""
+
+    def __repr__(self):
+        return f"Welcome {self.admin}!"
+
+    def loop(self):
+        while self.count != '0':
+            print("                        ")
+            print("1. New Car")
+            print("2. Sell Car")
+            print("3. See Car Details")
+            print("4. See Store Details")
+            print("5. Exit")
+            print("                        ")
+            count = input("Please Choose : ")
+
+            if count == '1':  # New Car
+                manufacturer_input = input("Manufacturer :")
+                model_input = input("Model :")
+                if manufacturer_input in car.seestore() \
+                        and model_input == car.seestore():
+                    self.amount_plus = input("Amount Plus: ")
+                    Car.add_amount(self, manufacturer=manufacturer_input, model=model_input)
+                    print("                        ")
+                    print("You Add")
+                    print(f" >  Manufacturer : {self.manufacturer}")
+                    print(f" >  Model : {self.model}")
+                    print(f" >  Price : {self.price}$")
+                    print(f" >  Amount : {self.amount_plus}")
+                    print("Model In Amount Available :", carstore.dictionary[self.manufacturer][self.model][1])
+                    print("                        ")
+                    # <<<<<<<<
+                elif manufacturer_input == "" or model_input == "":
+                    print("Text is Empty.")
+                    continue
+                else:
+                    price_input = input("Price :")
+                    amount_input_add = input("Amount :")
+                    car.dicti(manufacturer=manufacturer_input,
+                              model=model_input, price=price_input, amount=amount_input_add)
+                    print("Car Added in Store")
+                    print(f" >  Manufacturer : {self.manufacturer}")
+                    print(f" >  Model : {self.model}")
+                    print(f" >  Price : {self.price}$")
+                    print(f" >  Amount : {self.amount}")
+
+            elif count == '2':  # Sell Car
+                manufacturer_input_sell = input("Choose Manufacturer :")
+                model_input_sell = input("Enter Model To Sell :")
+                self.amount_minus = input("How Many :")
+                if manufacturer_input_sell == "" or model_input_sell == "" or self.amount_minus == "":
+                    print("Text is Empty.")
+                    continue
+                elif manufacturer_input_sell not in carstore.dictionary \
+                        and model_input_sell not in carstore.dictionary:
+                    print("Suddenly,In Store Not Available This Model, Please Choose Another...")
+                    continue
+                elif int(self.amount_minus) > int(carstore.dictionary[self.manufacturer][self.model][1]):
+                    print("Store Don't Have Much Car Models In Garage.")
+                    print("Model In Amount Available :", carstore.dictionary[self.manufacturer][self.model][1])
+                    continue
+                elif int(carstore.dictionary[self.manufacturer][self.model][1]) == 0:
+                    print("This Model Of Cars Not Available.")
+                    del carstore.dictionary[self.manufacturer]
+                    continue
+                else:
+                    car.sell(manufacturer=self.manufacturer, model=self.model)
+                    print("                        ")
+                    print("You Sell")
+                    print(f" >  Manufacturer : {self.manufacturer}")
+                    print(f" >  Model : {self.model}")
+                    print(f" >  Price : {self.price}$")
+                    print(f" >  Amount : {self.amount_minus}")
+                    print("Model In Amount Available :", carstore.dictionary[self.manufacturer][self.model][1])
+                    print("                        ")
+
+            elif count == '3':  # See Car Details
+                manufacturer_input_details = input("Choose Manufacturer :")
+                model_input_details = input("Choose Model :")
+                if manufacturer_input_details not in carstore.dictionary \
+                        and model_input_details not in carstore.dictionary:
+                    print("There's No Car on This Model")
+                    continue
+                elif int(carstore.dictionary[self.manufacturer][self.model][1]) == 0:
+                    print("This Model Of Cars Not Available.")
+                    continue
+                elif len(carstore.dictionary) == 0:
+                    print("There's No Car in Store")
+                    continue
+                else:
+                    car.seecar(manufacturer=self.manufacturer,
+                               model=self.model)
+                    print("                        ")
+                    print(f"Manufacturer : {self.manufacturer}")
+                    print(f"Model : {self.model}")
+                    print(f"Price : {self.price}$")
+                    print(f"Amount : {carstore.dictionary[self.manufacturer][self.model][1]}")
+                    print("                        ")
+
+            elif count == '4':  # See Store Details
+                if len(carstore.dictionary) == 0:
+                    print("There's No Car in Store")
+                    continue
+                elif int(carstore.dictionary[self.manufacturer][self.model][1]) == 0:
+                    del carstore.dictionary[self.manufacturer]
+                    continue
+                else:
+                    print("                        ")
+                    print("Store Details :")
+                    car.seestore()
+
+            elif count == '5':
+                self.boolean = False
+                print("Exit in Login Menu")
+                carstore.login(boolean=True, admin_name="Yosif", input_name='')
+                car.loop()
+
+            elif car.input_name == 'exit':
+                self.boolean = False
+                print("Bye.")
+                exit()
+            else:
+                print("Wrong Character!")
+                continue
+
+
+if __name__ == "__main__":
+    carstore = CarStore(manufacturer="", model="", price="",
+                        amount=0, amount_minus=0, amount_plus=0, count=1,
+                        boolean=True, admin="", input_name="",
+                        car_input="", admin_name='Yosif', model_dict={})
+
+    car = Car(manufacturer="", model="", price="",
+              amount=0, amount_minus=0, amount_plus=0, count=1,
+              boolean=True, admin="", input_name="", car_input="",
+              admin_name='Yosif', model_dict={})
+
+    carstore.login(boolean=True, admin_name='Yosif', input_name="")
+
+    car.loop()
+
+print()
