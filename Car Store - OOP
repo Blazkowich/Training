@@ -1,18 +1,8 @@
 class CarStore:
-    def __init__(self, manufacturer, model, model_dict, price,
-                 amount, count, boolean, amount_minus, amount_plus,
-                 admin, input_name, car_input, admin_name):
-        self.manufacturer = manufacturer
-        self.model = model
-        self.price = price
-        self.amount = amount
-        self.amount_minus = amount_minus
-        self.amount_plus = amount_plus
-        self.dictionary = {}
-        self.model_dict = model_dict
+    def __init__(self, count, boolean, dictionary, input_name, car_input, admin_name):
+        self.dictionary = dictionary
         self.count = count
         self.boolean = boolean
-        self.admin = admin
         self.input_name = input_name
         self.car_input = car_input
         self.admin_name = admin_name
@@ -31,7 +21,7 @@ class CarStore:
 
             elif car.input_name not in carstore.admin_name:
                 print("Login Is Not Correct")
-                car.login(boolean=True, admin_name="Yosif", input_name=car.input_name)
+                carstore.login(boolean=True, admin_name="Yosif", input_name=car.input_name)
 
             elif car.input_name == carstore.admin_name:
                 car.boolean = False
@@ -43,7 +33,7 @@ class CarStore:
                 carstore.login(boolean=True, admin_name='Yosif',
                                input_name=car.input_name)
                 continue
-            elif car.input_name not in car.admin_name and car.input_name == "":
+            elif car.input_name not in carstore.admin_name and car.input_name == "":
                 car.boolean = False
                 print("Text Is Empty.")
                 carstore.login(boolean=True, admin_name='Yosif',
@@ -56,39 +46,50 @@ class CarStore:
                                input_name=car.input_name)
 
 
-class Car(CarStore):
-
-    def dicti(self, manufacturer, model, price, amount):
+class Car:
+    def __init__(self, manufacturer, model, price,
+                 amount, amount_plus, amount_minus,
+                 boolean):
+        self.boolean = boolean
         self.manufacturer = manufacturer
         self.model = model
         self.price = price
         self.amount = amount
-        """if manufacturer in carstore.dictionary.keys() and model == carstore.dictionary[manufacturer]:
+        self.amount_plus = amount_plus
+        self.amount_minus = amount_minus
+
+    def dicti(self, manufacturer, model, price, amount, amount_plus):
+        self.manufacturer = manufacturer
+        self.model = model
+        self.price = price
+        self.amount = amount
+        self.amount_plus = amount_plus
+        if manufacturer in carstore.dictionary.keys() and model == carstore.dictionary[manufacturer]:
             for mak, mav in carstore.dictionary.items():
                 print("                     ")
                 print(f"Manufacturer - {mak}")
                 for mok, mov in mav.items():
                     print(f"Model - {mok}")
                     print(f"Price - {int(mov[0]) * int(mov[1])}$")
-                    print(f"Amount - {int(mov[1])}")
-            Car.add_amount(self=self)
-            """
-
-        dictii = carstore.dictionary[self.manufacturer] = {self.model: [self.price, self.amount]}
-        return dictii
+                    print(f"Amount - {int(mov[1]) + int(amount_plus)}")
+            return carstore.dictionary
+        else:
+            dictii = carstore.dictionary[self.manufacturer] = {self.model: [self.price, self.amount]}
+            return dictii
 
     def garage(self, manufacturer, model, price, amount):
         self.manufacturer = manufacturer
         self.model = model
         self.price = price
         self.amount = amount
-        car.dicti(manufacturer=self.manufacturer, model=self.model, price=self.price, amount=self.amount)
-        """print("                        ")
+        car.dicti(manufacturer=self.manufacturer, model=self.model, price=self.price, amount=self.amount,
+                  amount_plus=self.amount_plus)
+        print("                        ")
         print(f"Manufacturer : {self.manufacturer}")
         print(f"Model : {self.model}")
         print(f"Price : {self.price}$")
         print(f"Amount : {self.amount}")
-        print("                        ")"""
+        print("                        ")
         return carstore.dictionary
 
     def add(self):
@@ -97,24 +98,14 @@ class Car(CarStore):
         return car.garage(manufacturer=self.manufacturer, model=self.model,
                           price=self.price, amount=self.amount)
 
-    def add_amount(self, manufacturer, model):
-        self.manufacturer = manufacturer
-        self.model = model
-        dictiu_added = int(carstore.dictionary[manufacturer][model][1])
-        dictiu_added_final = dictiu_added + int(self.amount_plus)
-        carstore.dictionary.update({manufacturer: {
-            model: [self.price, dictiu_added_final]}})
-        print("Model In Amount Available :", carstore.dictionary[manufacturer][model][1])
-        return ""
-
     def sell(self, manufacturer, model):
         self.manufacturer = manufacturer
         self.model = model
         dictiu_removed = int(carstore.dictionary[manufacturer][model][1])
         dictiu_removed_final = dictiu_removed - int(self.amount_minus)
-        carstore.dictionary.update({manufacturer: {
-            model: [self.price, dictiu_removed_final]}})
-        print("Model In Amount Available :", carstore.dictionary[manufacturer][model][1])
+        carstore.dictionary.update({car.manufacturer:
+                                        {car.model: [car.price, dictiu_removed_final]}})
+        print("Model In Amount Available :", carstore.dictionary[car.manufacturer][car.model][1])
         return ""
 
     def seecar(self, manufacturer, model):
@@ -122,22 +113,22 @@ class Car(CarStore):
         self.model = model
         return carstore.dictionary
 
-    @staticmethod
-    def seestore():
+    def seestore(self):
         for mak, mav in carstore.dictionary.items():
             print("                     ")
             print(f"Manufacturer - {mak}")
             for mok, mov in mav.items():
                 print(f"Model - {mok}")
-                print(f"Price of All Cars - {int(mov[0]) * int(mov[1])}$")
                 print(f"Amount - {mov[1]}")
-        return ""
+                print(f"Retail Price - {mov[0]}$")
+                print(f"Summary Price - {int(mov[0]) * int(mov[1])}$")
+                print("                     ")
 
     def __repr__(self):
-        return f"Welcome {self.admin}!"
+        return f"Welcome {carstore.admin_name}!"
 
     def loop(self):
-        while self.count != '0':
+        while carstore.count != '0':
             print("                        ")
             print("1. New Car")
             print("2. Sell Car")
@@ -150,27 +141,33 @@ class Car(CarStore):
             if count == '1':  # New Car
                 manufacturer_input = input("Manufacturer :")
                 model_input = input("Model :")
-                if manufacturer_input in car.seestore() \
-                        and model_input == car.seestore():
-                    self.amount_plus = input("Amount Plus: ")
-                    Car.add_amount(self, manufacturer=manufacturer_input, model=model_input)
-                    print("                        ")
-                    print("You Add")
-                    print(f" >  Manufacturer : {self.manufacturer}")
-                    print(f" >  Model : {self.model}")
-                    print(f" >  Price : {self.price}$")
-                    print(f" >  Amount : {self.amount_plus}")
-                    print("Model In Amount Available :", carstore.dictionary[self.manufacturer][self.model][1])
-                    print("                        ")
-                    # <<<<<<<<
-                elif manufacturer_input == "" or model_input == "":
+                price_input = input("Price :")
+                amount_input_add = input("Amount :")
+                if manufacturer_input == "" or model_input == "" or price_input == "" \
+                        or amount_input_add == "":
                     print("Text is Empty.")
                     continue
+                if manufacturer_input in carstore.dictionary:
+                    if model_input not in carstore.dictionary[self.manufacturer]:
+                        carstore.dictionary[self.manufacturer].update({model_input: [price_input, amount_input_add]})
+                        print("Car Added in Store")
+                        print(f" >  Manufacturer : {self.manufacturer}")
+                        print(f" >  Model : {model_input}")
+                        print(f" >  Price : {price_input}$")
+                        print(f" >  Amount : {amount_input_add}")
+                    elif model_input in carstore.dictionary[self.manufacturer]:
+                        updated_amount = int(carstore.dictionary[car.manufacturer][car.model][1]) + int(
+                            amount_input_add)
+                        carstore.dictionary[car.manufacturer][car.model][1] = updated_amount
+                        print("Car Added in Store")
+                        print(f" >  Manufacturer : {self.manufacturer}")
+                        print(f" >  Model : {self.model}")
+                        print(f" >  Price : {self.price}$")
+                        print(f" >  Amount : {amount_input_add}")
                 else:
-                    price_input = input("Price :")
-                    amount_input_add = input("Amount :")
                     car.dicti(manufacturer=manufacturer_input,
-                              model=model_input, price=price_input, amount=amount_input_add)
+                              model=model_input, price=price_input, amount=amount_input_add,
+                              amount_plus=amount_input_add)
                     print("Car Added in Store")
                     print(f" >  Manufacturer : {self.manufacturer}")
                     print(f" >  Model : {self.model}")
@@ -178,6 +175,13 @@ class Car(CarStore):
                     print(f" >  Amount : {self.amount}")
 
             elif count == '2':  # Sell Car
+                try:
+                    if int(carstore.dictionary[self.manufacturer][self.model][1]) == 0:
+                        print("There's No Car in Store")
+                        continue
+                except KeyError:
+                    print("There's No Car in Store")
+                    continue
                 manufacturer_input_sell = input("Choose Manufacturer :")
                 model_input_sell = input("Enter Model To Sell :")
                 self.amount_minus = input("How Many :")
@@ -197,7 +201,7 @@ class Car(CarStore):
                     del carstore.dictionary[self.manufacturer]
                     continue
                 else:
-                    car.sell(manufacturer=self.manufacturer, model=self.model)
+                    car.sell(manufacturer=self.manufacturer, model=model_input_sell)
                     print("                        ")
                     print("You Sell")
                     print(f" >  Manufacturer : {self.manufacturer}")
@@ -208,6 +212,13 @@ class Car(CarStore):
                     print("                        ")
 
             elif count == '3':  # See Car Details
+                try:
+                    if int(carstore.dictionary[self.manufacturer][self.model][1]) == 0:
+                        print("There's No Car in Store")
+                        continue
+                except KeyError:
+                    print("There's No Car in Store")
+                    continue
                 manufacturer_input_details = input("Choose Manufacturer :")
                 model_input_details = input("Choose Model :")
                 if manufacturer_input_details not in carstore.dictionary \
@@ -231,11 +242,12 @@ class Car(CarStore):
                     print("                        ")
 
             elif count == '4':  # See Store Details
-                if len(carstore.dictionary) == 0:
+                try:
+                    if int(carstore.dictionary[self.manufacturer][self.model][1]) == 0:
+                        print("There's No Car in Store")
+                        continue
+                except KeyError:
                     print("There's No Car in Store")
-                    continue
-                elif int(carstore.dictionary[self.manufacturer][self.model][1]) == 0:
-                    del carstore.dictionary[self.manufacturer]
                     continue
                 else:
                     print("                        ")
@@ -248,7 +260,7 @@ class Car(CarStore):
                 carstore.login(boolean=True, admin_name="Yosif", input_name='')
                 car.loop()
 
-            elif car.input_name == 'exit':
+            elif carstore.input_name == 'exit':
                 self.boolean = False
                 print("Bye.")
                 exit()
@@ -258,15 +270,12 @@ class Car(CarStore):
 
 
 if __name__ == "__main__":
-    carstore = CarStore(manufacturer="", model="", price="",
-                        amount=0, amount_minus=0, amount_plus=0, count=1,
-                        boolean=True, admin="", input_name="",
-                        car_input="", admin_name='Yosif', model_dict={})
+    carstore = CarStore(count=1,
+                        boolean=True, input_name="",
+                        car_input="", admin_name='Yosif', dictionary={})
 
     car = Car(manufacturer="", model="", price="",
-              amount=0, amount_minus=0, amount_plus=0, count=1,
-              boolean=True, admin="", input_name="", car_input="",
-              admin_name='Yosif', model_dict={})
+              amount=0, amount_minus=0, amount_plus=0, boolean='')
 
     carstore.login(boolean=True, admin_name='Yosif', input_name="")
 
